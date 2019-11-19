@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a5e234ffef0c4774a4b6d97661ef12a1 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_a5e234ffef0c4774a4b6d97661ef12a1" ></div>
+        
+</body>
+<script>    
+    
+            var map_a5e234ffef0c4774a4b6d97661ef12a1 = L.map(
+                "map_a5e234ffef0c4774a4b6d97661ef12a1",
+                {
+                    center: [38.371081, 34.026965],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 15,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1c94b56e01824f7eae596d6e81360494 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_a5e234ffef0c4774a4b6d97661ef12a1);
+        
+    
+            var marker_59a8ecfde166423b87a809ccbf60479e = L.marker(
+                [38.3659, 34.038605],
+                {}
+            ).addTo(map_a5e234ffef0c4774a4b6d97661ef12a1);
+        
+    
+            var icon_a2d7a3d172b045df8b1854af7f294dd5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_59a8ecfde166423b87a809ccbf60479e.setIcon(icon_a2d7a3d172b045df8b1854af7f294dd5);
+        
+    
+        var popup_850dd7a5716d410c8fff0abdb71fe1dc = L.popup({"maxWidth": "100%"});
+
+        
+            var html_7f510674ff8942e6b31127514e3fd2c0 = $(`<div id="html_7f510674ff8942e6b31127514e3fd2c0" style="width: 100.0%; height: 100.0%;">Saadet Güney İmam Hatip Ortaokulu</div>`)[0];
+            popup_850dd7a5716d410c8fff0abdb71fe1dc.setContent(html_7f510674ff8942e6b31127514e3fd2c0);
+        
+
+        marker_59a8ecfde166423b87a809ccbf60479e.bindPopup(popup_850dd7a5716d410c8fff0abdb71fe1dc)
+        ;
+
+        
+    
+    
+            var marker_61dd1b2b66c54e6498201b7dc1beee8e = L.marker(
+                [38.362615, 34.019043],
+                {}
+            ).addTo(map_a5e234ffef0c4774a4b6d97661ef12a1);
+        
+    
+            var icon_75788ea0c93a4ded947300514b5bc397 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_61dd1b2b66c54e6498201b7dc1beee8e.setIcon(icon_75788ea0c93a4ded947300514b5bc397);
+        
+    
+        var popup_4c5422ebe8814580886c82dafe574242 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e526ae1b4e4b43418eb9b55e0803bb05 = $(`<div id="html_e526ae1b4e4b43418eb9b55e0803bb05" style="width: 100.0%; height: 100.0%;">Cahit Zarifoğlu Ortaokulu</div>`)[0];
+            popup_4c5422ebe8814580886c82dafe574242.setContent(html_e526ae1b4e4b43418eb9b55e0803bb05);
+        
+
+        marker_61dd1b2b66c54e6498201b7dc1beee8e.bindPopup(popup_4c5422ebe8814580886c82dafe574242)
+        ;
+
+        
+    
+    
+            var marker_81b1c4e8e0084c67bb84a2eb7b82caa5 = L.marker(
+                [38.367349, 34.019474],
+                {}
+            ).addTo(map_a5e234ffef0c4774a4b6d97661ef12a1);
+        
+    
+            var icon_f1308a8e30934f1c90dea0acd2036557 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_81b1c4e8e0084c67bb84a2eb7b82caa5.setIcon(icon_f1308a8e30934f1c90dea0acd2036557);
+        
+    
+        var popup_643bfed53169478190a1b22b54f8f380 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_abf406c90f7c49a799d6979a259288e7 = $(`<div id="html_abf406c90f7c49a799d6979a259288e7" style="width: 100.0%; height: 100.0%;">Piri Mehmet Paşa Ortaokulu</div>`)[0];
+            popup_643bfed53169478190a1b22b54f8f380.setContent(html_abf406c90f7c49a799d6979a259288e7);
+        
+
+        marker_81b1c4e8e0084c67bb84a2eb7b82caa5.bindPopup(popup_643bfed53169478190a1b22b54f8f380)
+        ;
+
+        
+    
+    
+            var marker_e086458fb6b9425995e868c27e4936a2 = L.marker(
+                [38.349476, 33.947095],
+                {}
+            ).addTo(map_a5e234ffef0c4774a4b6d97661ef12a1);
+        
+    
+            var icon_1b50c32e8f724aec88824746042bd165 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_e086458fb6b9425995e868c27e4936a2.setIcon(icon_1b50c32e8f724aec88824746042bd165);
+        
+    
+        var popup_063035336103431eb9191d4787ec4291 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_35253d09409e493b990a029de3da0d14 = $(`<div id="html_35253d09409e493b990a029de3da0d14" style="width: 100.0%; height: 100.0%;">Aksaray Şehit Pilot Hamza Gümüşsoy Fen Lisesi</div>`)[0];
+            popup_063035336103431eb9191d4787ec4291.setContent(html_35253d09409e493b990a029de3da0d14);
+        
+
+        marker_e086458fb6b9425995e868c27e4936a2.bindPopup(popup_063035336103431eb9191d4787ec4291)
+        ;
+
+        
+    
+    
+            var marker_59ed504c742c4044be2eb2e873d8e80a = L.marker(
+                [38.361191, 33.995023],
+                {}
+            ).addTo(map_a5e234ffef0c4774a4b6d97661ef12a1);
+        
+    
+            var icon_cd0e33184770455cbce689f27da08a7b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_59ed504c742c4044be2eb2e873d8e80a.setIcon(icon_cd0e33184770455cbce689f27da08a7b);
+        
+    
+        var popup_92cb411446ee41f2af1ad6b4ae7abb75 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a5b0f0f077ca4b5bbc9e292f59b32c72 = $(`<div id="html_a5b0f0f077ca4b5bbc9e292f59b32c72" style="width: 100.0%; height: 100.0%;">Şehit Önder Güzel Anadolu İmam Hatip Lisesi</div>`)[0];
+            popup_92cb411446ee41f2af1ad6b4ae7abb75.setContent(html_a5b0f0f077ca4b5bbc9e292f59b32c72);
+        
+
+        marker_59ed504c742c4044be2eb2e873d8e80a.bindPopup(popup_92cb411446ee41f2af1ad6b4ae7abb75)
+        ;
+
+        
+    
+    
+            var marker_0c26845034a3483b8af325a3e9499e73 = L.marker(
+                [38.35506, 34.037362],
+                {}
+            ).addTo(map_a5e234ffef0c4774a4b6d97661ef12a1);
+        
+    
+            var icon_1127b0915f804cb680532d4b931930a6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0c26845034a3483b8af325a3e9499e73.setIcon(icon_1127b0915f804cb680532d4b931930a6);
+        
+    
+        var popup_b71dc31e062e4c4c9d5fd75ad26914d6 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_27a7a713f6b44b53a38b7c703e3c7439 = $(`<div id="html_27a7a713f6b44b53a38b7c703e3c7439" style="width: 100.0%; height: 100.0%;">Kanber Demir Anadolu Lisesi</div>`)[0];
+            popup_b71dc31e062e4c4c9d5fd75ad26914d6.setContent(html_27a7a713f6b44b53a38b7c703e3c7439);
+        
+
+        marker_0c26845034a3483b8af325a3e9499e73.bindPopup(popup_b71dc31e062e4c4c9d5fd75ad26914d6)
+        ;
+
+        
+    
+    
+            var marker_3360972fa50f495c9a4b6619a5535f85 = L.marker(
+                [38.35561, 34.029316],
+                {}
+            ).addTo(map_a5e234ffef0c4774a4b6d97661ef12a1);
+        
+    
+            var icon_c1f30ce2e6974792a9139d18f7de7ee9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_3360972fa50f495c9a4b6619a5535f85.setIcon(icon_c1f30ce2e6974792a9139d18f7de7ee9);
+        
+    
+        var popup_1d6c7230a3ce4de5802831514588f8a7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_de84511a76914b30bd28f2b171936780 = $(`<div id="html_de84511a76914b30bd28f2b171936780" style="width: 100.0%; height: 100.0%;">Fatih Mesleki Ve Teknik Anadolu Lisesi</div>`)[0];
+            popup_1d6c7230a3ce4de5802831514588f8a7.setContent(html_de84511a76914b30bd28f2b171936780);
+        
+
+        marker_3360972fa50f495c9a4b6619a5535f85.bindPopup(popup_1d6c7230a3ce4de5802831514588f8a7)
+        ;
+
+        
+    
+</script>
