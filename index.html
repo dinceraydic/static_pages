@@ -1,238 +1,359 @@
 <!DOCTYPE html>
-<head>    
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    
-        <script>
-            L_NO_TOUCH = false;
-            L_DISABLE_3D = false;
-        </script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
-    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
-    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
-    
-            <meta name="viewport" content="width=device-width,
-                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <style>
-                #map_986d17fb15604a4fbd0b73082b88c830 {
-                    position: relative;
-                    width: 100.0%;
-                    height: 100.0%;
-                    left: 0.0%;
-                    top: 0.0%;
-                }
-            </style>
-        
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Translator</title>
+  <style>
+    #translation {
+      display: none;
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 2rem;
+    }
+
+    #btnBox {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      width: 120px;
+      height: 35px;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    #renewButton {
+      background: #ca0505;
+      border: #570303;
+    }
+
+    #showTranslationButton {
+      background: #16049e;
+      border: rgb(11, 3, 87);
+    }
+
+    #texts {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #word {
+      color: #ab0a0a;
+    }
+
+    #translation {
+      color: #130abb;
+    }
+  </style>
 </head>
-<body>    
-    
-            <div class="folium-map" id="map_986d17fb15604a4fbd0b73082b88c830" ></div>
-        
+
+<body>
+
+  <div class="container">
+    <h1>Word Translator</h1>
+
+    <div id="btnBox">
+      <button class="btn" id="renewButton">Renew</button>
+      <button class="btn" id="showTranslationButton">Show Translation</button>
+    </div>
+    <div id="texts">
+      <p id="word"></p>
+      <p id="translation"></p>
+    </div>
+  </div>
+
+
+
+  <script>
+    const words = [
+      {
+        "english": "at\u00a0home\u00a0",
+        "turkish": "evde"
+      },
+      {
+        "english": "at\u00a0school\u00a0",
+        "turkish": " okulda"
+      },
+      {
+        "english": "at\u00a0the carnival\u00a0",
+        "turkish": " karnavalda"
+      },
+      {
+        "english": "at\u00a0the hospital\u00a0",
+        "turkish": " hastanede"
+      },
+      {
+        "english": "at\u00a0the library\u00a0",
+        "turkish": " k\u00fct\u00fcphanede"
+      },
+      {
+        "english": "at\u00a0the market\u00a0",
+        "turkish": " \u00e7ar\u015f\u0131da, pazarda"
+      },
+      {
+        "english": "at\u00a0the museum\u00a0",
+        "turkish": " m\u00fczede"
+      },
+      {
+        "english": "at\u00a0the post office\u00a0",
+        "turkish": " postanede"
+      },
+      {
+        "english": "at\u00a0the shopping centre\u00a0",
+        "turkish": " al\u0131\u015f veri\u015f merkezinde"
+      },
+      {
+        "english": "at\u00a0the zoo\u00a0",
+        "turkish": " hayvanat bah\u00e7esinde"
+      },
+      {
+        "english": "bank\u00a0",
+        "turkish": " banka"
+      },
+      {
+        "english": "cafe\u00a0",
+        "turkish": " kafe, kafeterya"
+      },
+      {
+        "english": "campus\u00a0",
+        "turkish": " yerle\u015fke, okul alan\u0131"
+      },
+      {
+        "english": "carnival\u00a0",
+        "turkish": " karnaval"
+      },
+      {
+        "english": "cinema\u00a0",
+        "turkish": " sinema"
+      },
+      {
+        "english": "fire station",
+        "turkish": " itfaiye"
+      },
+      {
+        "english": "hospital\u00a0",
+        "turkish": " hastane"
+      },
+      {
+        "english": "library\u00a0",
+        "turkish": " k\u00fct\u00fcphane"
+      },
+      {
+        "english": "market\u00a0",
+        "turkish": " \u00e7ar\u015f\u0131, pazar"
+      },
+      {
+        "english": "museum\u00a0",
+        "turkish": " m\u00fcze"
+      },
+      {
+        "english": "park\u00a0",
+        "turkish": " park"
+      },
+      {
+        "english": "police station\u00a0",
+        "turkish": " polis karakolu"
+      },
+      {
+        "english": "post office\u00a0",
+        "turkish": " postane"
+      },
+      {
+        "english": "restaurant\u00a0",
+        "turkish": " lokanta"
+      },
+      {
+        "english": "school\u00a0",
+        "turkish": " okul"
+      },
+      {
+        "english": "shopping centre\u00a0",
+        "turkish": " al\u0131\u015f veri\u015f merkezi"
+      },
+      {
+        "english": "zoo\u00a0",
+        "turkish": " hayvanat bah\u00e7esi"
+      },
+      {
+        "english": "toy",
+        "turkish": "oyuncak"
+      },
+      {
+        "english": "game",
+        "turkish": "oyun"
+      },
+      {
+        "english": "ball",
+        "turkish": "top"
+      },
+      {
+        "english": "frisbee",
+        "turkish": "frizbi"
+      },
+      {
+        "english": "teddy bear",
+        "turkish": "oyuncak ay\u0131"
+      },
+      {
+        "english": "doll",
+        "turkish": "oyuncak bebek"
+      },
+      {
+        "english": "plane",
+        "turkish": "u\u00e7ak"
+      },
+      {
+        "english": "blocks",
+        "turkish": "k\u00fcpler"
+      },
+      {
+        "english": "playing cards",
+        "turkish": "oyun kartlar\u0131"
+      },
+      {
+        "english": "chess",
+        "turkish": "satran\u00e7"
+      },
+      {
+        "english": "favorite",
+        "turkish": "favori, en sevilen"
+      },
+      {
+        "english": "bedroom",
+        "turkish": "yatak odas\u0131"
+      },
+      {
+        "english": "living room",
+        "turkish": "oturma odas\u0131"
+      },
+      {
+        "english": "dining room",
+        "turkish": "yemek odas\u0131"
+      },
+      {
+        "english": "study",
+        "turkish": "\u00e7al\u0131\u015fma odas\u0131"
+      },
+      {
+        "english": "kitchen",
+        "turkish": "mutfak"
+      },
+      {
+        "english": "bathroom",
+        "turkish": "banyo"
+      },
+      {
+        "english": "toilet",
+        "turkish": "tuvalet"
+      },
+      {
+        "english": "garage",
+        "turkish": "garaj"
+      },
+      {
+        "english": "fridge",
+        "turkish": " buz dolab\u0131"
+      },
+      {
+        "english": "oven",
+        "turkish": " f\u0131r\u0131n"
+      },
+      {
+        "english": "cupboard",
+        "turkish": " dolap"
+      },
+      {
+        "english": "kettle",
+        "turkish": " ket\u0131l"
+      },
+      {
+        "english": "pillow",
+        "turkish": " yast\u0131k"
+      },
+      {
+        "english": "desk",
+        "turkish": " s\u0131ra, \u00e7al\u0131\u015fma masas\u0131."
+      },
+      {
+        "english": "computer",
+        "turkish": " bilgisayar"
+      },
+      {
+        "english": "mirror",
+        "turkish": " ayna"
+      },
+      {
+        "english": "sofa",
+        "turkish": " kanepe"
+      },
+      {
+        "english": "carpet",
+        "turkish": " hal\u0131"
+      },
+      {
+        "english": "televison",
+        "turkish": " televizyon"
+      },
+      {
+        "english": "lamp",
+        "turkish": " lamba"
+      },
+      {
+        "english": "sink",
+        "turkish": " lavabo"
+      },
+      {
+        "english": "wardrobe",
+        "turkish": " gardrop"
+      },
+      {
+        "english": "shower",
+        "turkish": " du\u015f, banyo"
+      }
+    ];
+
+    const wordElement = document.getElementById('word');
+    const translationElement = document.getElementById('translation');
+    const renewButton = document.getElementById('renewButton');
+    const showTranslationButton = document.getElementById('showTranslationButton');
+
+    let currentIndex = 0;
+
+    function renewWord() {
+      currentIndex = Math.floor(Math.random() * words.length);
+      wordElement.textContent = words[currentIndex].english;
+      translationElement.textContent = '';
+      translationElement.style.display = 'none';
+    }
+
+    function showTranslation() {
+      translationElement.textContent = words[currentIndex].turkish;
+      translationElement.style.display = 'block';
+    }
+
+    renewButton.addEventListener('click', renewWord);
+    showTranslationButton.addEventListener('click', showTranslation);
+
+    // Initialize the first word
+    renewWord();
+  </script>
+
 </body>
-<script>    
-    
-            var map_986d17fb15604a4fbd0b73082b88c830 = L.map(
-                "map_986d17fb15604a4fbd0b73082b88c830",
-                {
-                    center: [38.364685, 34.007978],
-                    crs: L.CRS.EPSG3857,
-                    zoom: 14,
-                    zoomControl: true,
-                    preferCanvas: false,
-                }
-            );
 
-            
-
-        
-    
-            var tile_layer_264cec53e1154f64b8c79837ab740cee = L.tileLayer(
-                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_986d17fb15604a4fbd0b73082b88c830);
-        
-    
-            var marker_d0fe6da1b84444fa92df2e6a5c790045 = L.marker(
-                [38.3659, 34.038605],
-                {}
-            ).addTo(map_986d17fb15604a4fbd0b73082b88c830);
-        
-    
-            var icon_0d40763c6523489e811ed793ebd24a95 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_d0fe6da1b84444fa92df2e6a5c790045.setIcon(icon_0d40763c6523489e811ed793ebd24a95);
-        
-    
-        var popup_df156afbcfe94d9c97db53e82fe09213 = L.popup({"maxWidth": "100%"});
-
-        
-            var html_76c2139b6ea94ee390de4230b8590a87 = $(`<div id="html_76c2139b6ea94ee390de4230b8590a87" style="width: 100.0%; height: 100.0%;">Saadet Güney İmam Hatip Ortaokulu</div>`)[0];
-            popup_df156afbcfe94d9c97db53e82fe09213.setContent(html_76c2139b6ea94ee390de4230b8590a87);
-        
-
-        marker_d0fe6da1b84444fa92df2e6a5c790045.bindPopup(popup_df156afbcfe94d9c97db53e82fe09213)
-        ;
-
-        
-    
-    
-            var marker_6385bbd930984b499f982a69822e17cc = L.marker(
-                [38.362615, 34.019043],
-                {}
-            ).addTo(map_986d17fb15604a4fbd0b73082b88c830);
-        
-    
-            var icon_d8eee6b39c644cbbacde201a4884fd25 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_6385bbd930984b499f982a69822e17cc.setIcon(icon_d8eee6b39c644cbbacde201a4884fd25);
-        
-    
-        var popup_7aba6ba44ee04de49c5a69fad6534102 = L.popup({"maxWidth": "100%"});
-
-        
-            var html_898bdc177ca44260add60c3380408fab = $(`<div id="html_898bdc177ca44260add60c3380408fab" style="width: 100.0%; height: 100.0%;">Cahit Zarifoğlu Ortaokulu</div>`)[0];
-            popup_7aba6ba44ee04de49c5a69fad6534102.setContent(html_898bdc177ca44260add60c3380408fab);
-        
-
-        marker_6385bbd930984b499f982a69822e17cc.bindPopup(popup_7aba6ba44ee04de49c5a69fad6534102)
-        ;
-
-        
-    
-    
-            var marker_5097099daffd4219a485647f9ab15999 = L.marker(
-                [38.367349, 34.019474],
-                {}
-            ).addTo(map_986d17fb15604a4fbd0b73082b88c830);
-        
-    
-            var icon_7a9899a170044c03b53f0977a90a92c4 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_5097099daffd4219a485647f9ab15999.setIcon(icon_7a9899a170044c03b53f0977a90a92c4);
-        
-    
-        var popup_9c3773ae641e403788e7636c6b51d604 = L.popup({"maxWidth": "100%"});
-
-        
-            var html_253288b41af34b038ef9a83c338b4535 = $(`<div id="html_253288b41af34b038ef9a83c338b4535" style="width: 100.0%; height: 100.0%;">Piri Mehmet Paşa Ortaokulu</div>`)[0];
-            popup_9c3773ae641e403788e7636c6b51d604.setContent(html_253288b41af34b038ef9a83c338b4535);
-        
-
-        marker_5097099daffd4219a485647f9ab15999.bindPopup(popup_9c3773ae641e403788e7636c6b51d604)
-        ;
-
-        
-    
-    
-            var marker_f9d9060fcc6742c4bf64c5d511db57e6 = L.marker(
-                [38.349476, 33.947095],
-                {}
-            ).addTo(map_986d17fb15604a4fbd0b73082b88c830);
-        
-    
-            var icon_dd229f6386c44db3ad2bab0fe3104a40 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
-            );
-            marker_f9d9060fcc6742c4bf64c5d511db57e6.setIcon(icon_dd229f6386c44db3ad2bab0fe3104a40);
-        
-    
-        var popup_fbdba2e96f3148b3ad8781dce4e8a82e = L.popup({"maxWidth": "100%"});
-
-        
-            var html_1ea1ff0da17b4a21b520aaa8bf7f536d = $(`<div id="html_1ea1ff0da17b4a21b520aaa8bf7f536d" style="width: 100.0%; height: 100.0%;">Aksaray Şehit Pilot Hamza Gümüşsoy Fen Lisesi</div>`)[0];
-            popup_fbdba2e96f3148b3ad8781dce4e8a82e.setContent(html_1ea1ff0da17b4a21b520aaa8bf7f536d);
-        
-
-        marker_f9d9060fcc6742c4bf64c5d511db57e6.bindPopup(popup_fbdba2e96f3148b3ad8781dce4e8a82e)
-        ;
-
-        
-    
-    
-            var marker_d76dd9876bf6471ca8e4ad8250f4948c = L.marker(
-                [38.361191, 33.995023],
-                {}
-            ).addTo(map_986d17fb15604a4fbd0b73082b88c830);
-        
-    
-            var icon_81245ba4b8374a7fb4e9f8edfc6b6adb = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
-            );
-            marker_d76dd9876bf6471ca8e4ad8250f4948c.setIcon(icon_81245ba4b8374a7fb4e9f8edfc6b6adb);
-        
-    
-        var popup_553b0eef45e0491d9dbb84104322ebf8 = L.popup({"maxWidth": "100%"});
-
-        
-            var html_3a42471eb0d74cac9e143f974c2b79f7 = $(`<div id="html_3a42471eb0d74cac9e143f974c2b79f7" style="width: 100.0%; height: 100.0%;">Şehit Önder Güzel Anadolu İmam Hatip Lisesi</div>`)[0];
-            popup_553b0eef45e0491d9dbb84104322ebf8.setContent(html_3a42471eb0d74cac9e143f974c2b79f7);
-        
-
-        marker_d76dd9876bf6471ca8e4ad8250f4948c.bindPopup(popup_553b0eef45e0491d9dbb84104322ebf8)
-        ;
-
-        
-    
-    
-            var marker_f312201ac0c24876ad47d35b67e904ec = L.marker(
-                [38.35506, 34.037362],
-                {}
-            ).addTo(map_986d17fb15604a4fbd0b73082b88c830);
-        
-    
-            var icon_140384c5f2f249869a9e1831de9399df = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
-            );
-            marker_f312201ac0c24876ad47d35b67e904ec.setIcon(icon_140384c5f2f249869a9e1831de9399df);
-        
-    
-        var popup_2894766c60b54ae8849450c8160134fc = L.popup({"maxWidth": "100%"});
-
-        
-            var html_849adfb226264670920954454ca4667c = $(`<div id="html_849adfb226264670920954454ca4667c" style="width: 100.0%; height: 100.0%;">Kanber Demir Anadolu Lisesi</div>`)[0];
-            popup_2894766c60b54ae8849450c8160134fc.setContent(html_849adfb226264670920954454ca4667c);
-        
-
-        marker_f312201ac0c24876ad47d35b67e904ec.bindPopup(popup_2894766c60b54ae8849450c8160134fc)
-        ;
-
-        
-    
-    
-            var marker_f775d75a2fb5443b8b0c5f7b4e3ffb93 = L.marker(
-                [38.35561, 34.029316],
-                {}
-            ).addTo(map_986d17fb15604a4fbd0b73082b88c830);
-        
-    
-            var icon_b8d52e39fe0e47c094c92ee4013d9bf9 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
-            );
-            marker_f775d75a2fb5443b8b0c5f7b4e3ffb93.setIcon(icon_b8d52e39fe0e47c094c92ee4013d9bf9);
-        
-    
-        var popup_312d4a4d613947dda7ed89c1fd6716d5 = L.popup({"maxWidth": "100%"});
-
-        
-            var html_9ed7f576cbee46a091b6d4f0ddc62348 = $(`<div id="html_9ed7f576cbee46a091b6d4f0ddc62348" style="width: 100.0%; height: 100.0%;">Fatih Mesleki Ve Teknik Anadolu Lisesi</div>`)[0];
-            popup_312d4a4d613947dda7ed89c1fd6716d5.setContent(html_9ed7f576cbee46a091b6d4f0ddc62348);
-        
-
-        marker_f775d75a2fb5443b8b0c5f7b4e3ffb93.bindPopup(popup_312d4a4d613947dda7ed89c1fd6716d5)
-        ;
-
-        
-    
-</script>
+</html>
